@@ -1,6 +1,7 @@
 from groq import Groq
 from src.config import GROQ_API_KEY, GROQ_MODEL
 from src.ChatMemory import ConversationMemory
+from datetime import datetime
 
 
 class AnswerGenerator:
@@ -9,7 +10,6 @@ class AnswerGenerator:
         self.memory = ConversationMemory(max_messages=max_messages_per_conversation)
 
     def _get_system_prompt(self) -> str:
-        # Importante: sin indentación rara y sin comillas tipográficas.
         return """
 Eres un chatbot educativo y de orientación dirigido principalmente a adolescentes y jóvenes. Brindas información clara, segura, respetuosa y fácil de entender sobre sexualidad, consentimiento, salud sexual y reproductiva, prevención de violencia y derechos sexuales y reproductivos.
 
@@ -22,6 +22,10 @@ Regla principal:
 Muy importante (cumple el objetivo del proyecto):
 - La ausencia de CONTEXTO útil NO es una razón para negarte a responder preguntas generales.
 - Si puedes ayudar con conocimiento general confiable, hazlo.
+
+Tiempo real (fecha/hora):
+- Para preguntas como “qué día es hoy”, “qué fecha es hoy”, “qué hora es”, usa los METADATOS DEL SISTEMA (fecha/hora) que te entrega el mensaje del usuario.
+- No inventes fecha/hora si ya tienes esos metadatos disponibles.
 
 Seguridad:
 - No inventes datos específicos no verificados (teléfonos, direcciones, instituciones, leyes locales exactas, estadísticas con números, fechas “de hoy” o afirmaciones factuales muy concretas si no estás seguro).
@@ -39,8 +43,22 @@ Estilo:
         # Contexto puede venir vacío si el retrieval no encontró nada confiable.
         safe_context = context.strip() if context and context.strip() else ""
 
+        # ✅ Metadatos reales del sistema (Python sí conoce la fecha/hora actuales)
+        now = datetime.now()
+        fecha_actual = now.strftime("%Y-%m-%d")
+        hora_actual = now.strftime("%H:%M:%S")
+
+        # ✅ Día de la semana en español (sin depender del locale del sistema)
+        dias = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+        dia_semana = dias[now.weekday()]
+
         return f"""PREGUNTA ACTUAL:
 {question}
+
+METADATOS DEL SISTEMA (confiables):
+- Fecha actual: {fecha_actual}
+- Día de la semana: {dia_semana}
+- Hora actual: {hora_actual}
 
 CONTEXTO DISPONIBLE (puede estar vacío):
 {safe_context if safe_context else "[vacío]"}
@@ -51,6 +69,7 @@ Instrucciones:
 - Si el contexto está vacío o no es útil, responde igualmente usando tu criterio y conocimiento general confiable (no te detengas por falta de contexto).
 - No digas “no puedo responder solo porque no hay contexto”.
 - Usa el historial reciente para entender referencias o continuidad.
+- Para preguntas de fecha/hora “de hoy/ahora”, usa los METADATOS DEL SISTEMA (no inventes).
 - No inventes datos específicos no verificados.
 - Responde claro, natural y fácil de entender para una persona joven.
 - No menciones el contexto si no aporta nada.
