@@ -14,6 +14,8 @@ El consentimiento es la base para comprender la violencia sexual. Debe reunir ci
 
 ### Características del consentimiento
 
+Las caracteristicas del consentimiento son:
+
 - Debe ser libre, sin miedo, presión ni amenazas.
 - Debe ser claro, no asumido.
 - Debe ser específico, porque aceptar una cosa no implica aceptar todo.
