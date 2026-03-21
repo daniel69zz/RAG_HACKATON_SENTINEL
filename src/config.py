@@ -14,12 +14,12 @@ EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))  # all-MiniLM-L6-v2 => 384
 
 # Chunking
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 100
+CHUNK_SIZE = 900
+CHUNK_OVERLAP = 120
 
 # Retrieval
-TOP_K = 3
-MIN_SIMILARITY = 0.30
+TOP_K = 6
+MIN_SIMILARITY = 0.20
 
 # PostgreSQL
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")

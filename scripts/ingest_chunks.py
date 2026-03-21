@@ -38,6 +38,11 @@ def main():
 
         print(f"  📄 {source}: {len(pieces)} chunks")
 
+        # if pieces:
+        #     print("     Primer chunk de ejemplo:")
+        #     print(pieces[0][:500])
+        #     print("     " + "-" * 40)
+        
         if not pieces:
             continue
 
