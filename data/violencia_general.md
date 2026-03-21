@@ -1,6 +1,6 @@
 # VIOLENCIA SEXUAL: PANORAMA GENERAL Y DIFERENCIAS CONCEPTUALES
 
-## CONCEPTO GENERAL
+## CONCEPTO GENERAL DE VIOLENCIA SEXUAL
 
 La violencia sexual es cualquier acto, conducta, presión, amenaza, manipulación o imposición de carácter sexual que ocurre sin consentimiento libre, informado y real. No se limita al uso de fuerza física. También puede manifestarse mediante intimidación, chantaje, presión emocional, abuso de poder, insistencia persistente o aprovechamiento de una situación de vulnerabilidad.
 
