@@ -59,6 +59,39 @@ class RAGPipeline:
             "confidence": "high" if use_rag_context else "low"
         }
 
+    def get_law_protections_for_evidence(self, evidence: str, max_laws: int = 3) -> Dict:
+        safe_max_laws = max(1, min(int(max_laws), 3))
+
+        query_embedding = self.embedding_gen.embed_query(evidence)
+        retrieval_top_k = max(TOP_K, 12)
+        retrieved = self.db.search_similar(query_embedding=query_embedding, top_k=retrieval_top_k)
+        best_score = retrieved[0].score if retrieved else 0.0
+
+        # Umbral un poco mas flexible que el chat general para no perder normas potencialmente utiles.
+        use_rag_context = bool(retrieved) and (best_score >= 0.15)
+        context = build_context(retrieved) if use_rag_context else ""
+
+        legal_result = self.answer_gen.extract_laws_for_evidence(
+            evidence=evidence,
+            context=context,
+            max_laws=safe_max_laws,
+        )
+
+        return {
+            "evidencia": evidence,
+            "best_score": round(best_score, 4),
+            "used_rag_context": use_rag_context,
+            "leyes": legal_result.get("leyes", []),
+            "retrieved_chunks": [
+                {
+                    "source": item.chunk.source,
+                    "score": round(item.score, 4),
+                    "text": item.chunk.text,
+                }
+                for item in retrieved
+            ] if use_rag_context else [],
+        }
+
     def clear_conversation(self, conversation_id: str) -> None:
         self.answer_gen.clear_conversation(conversation_id)
 

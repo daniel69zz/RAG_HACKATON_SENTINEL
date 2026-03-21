@@ -1,3 +1,5 @@
+import json
+import re
 from groq import Groq
 from src.config import GROQ_API_KEY, GROQ_MODEL
 from src.ChatMemory import ConversationMemory
@@ -141,3 +143,113 @@ PREGUNTA ACTUAL:
 
     def get_history(self, conversation_id: str):
         return self.memory.get_messages(conversation_id)
+
+    @staticmethod
+    def _extract_json_object(raw_text: str) -> dict:
+        text = (raw_text or "").strip()
+        if not text:
+            return {}
+
+        # Primer intento: parsear todo el texto como JSON.
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
+            pass
+
+        # Fallback: tomar el primer bloque JSON delimitado por llaves.
+        match = re.search(r"\{.*\}", text, flags=re.DOTALL)
+        if not match:
+            return {}
+
+        try:
+            return json.loads(match.group(0))
+        except json.JSONDecodeError:
+            return {}
+
+    def extract_laws_for_evidence(self, evidence: str, context: str, max_laws: int = 3):
+        safe_max = max(1, min(int(max_laws), 3))
+        safe_context = context.strip() if context and context.strip() else "[vacío]"
+
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "Eres un analista legal educativo especializado en violencia sexual en Bolivia. "
+                    "Tu tarea es extraer leyes/normas protectoras aplicables a una evidencia. "
+                    "No inventes leyes, articulos, ni hechos. Usa solo el CONTEXTO RECUPERADO."
+                ),
+            },
+            {
+                "role": "user",
+                "content": f"""
+EVIDENCIA DEL CASO:
+{evidence}
+
+CONTEXTO RECUPERADO:
+{safe_context}
+
+Devuelve SOLO JSON valido con este formato exacto:
+{{
+  "leyes": [
+    {{
+      "ley": "Nombre de la ley/norma",
+      "articulos": ["Art. X", "Art. Y"],
+      "descripcion_breve": "Explicacion en 1 o 2 frases",
+      "por_que_aplica": "Relacion directa con la evidencia"
+    }}
+  ]
+}}
+
+Reglas:
+- Maximo {safe_max} leyes (pueden ser menos).
+- Si no hay articulos explicitos, devuelve [] en articulos.
+- Prioriza normas de proteccion de la victima.
+- No incluyas texto fuera del JSON.
+""",
+            },
+        ]
+
+        completion = self.client.chat.completions.create(
+            model=GROQ_MODEL,
+            temperature=0,
+            messages=messages,
+        )
+
+        raw = completion.choices[0].message.content.strip() if completion.choices else ""
+        parsed = self._extract_json_object(raw)
+
+        laws = parsed.get("leyes", []) if isinstance(parsed, dict) else []
+        cleaned = []
+
+        for item in laws:
+            if not isinstance(item, dict):
+                continue
+
+            law_name = str(item.get("ley", "")).strip()
+            if not law_name:
+                continue
+
+            articles = item.get("articulos", [])
+            if not isinstance(articles, list):
+                articles = []
+            articles = [str(a).strip() for a in articles if str(a).strip()]
+
+            description = str(item.get("descripcion_breve", "")).strip()
+            reason = str(item.get("por_que_aplica", "")).strip()
+
+            cleaned.append(
+                {
+                    "ley": law_name,
+                    "articulos": articles,
+                    "descripcion_breve": description,
+                    "por_que_aplica": reason,
+                }
+            )
+
+            if len(cleaned) >= safe_max:
+                break
+
+        return {
+            "leyes": cleaned,
+            "raw_model_output": raw,
+        }
