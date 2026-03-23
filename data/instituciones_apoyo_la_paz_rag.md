@@ -2,6 +2,53 @@
 
 Este documento reúne instituciones de apoyo en el municipio de La Paz, incluyendo servicios legales, psicológicos, sociales, de salud y resguardo. Los números consignados corresponden a contactos publicados en fuentes oficiales o institucionales verificadas públicamente.
 
+## ¿Dónde acudir si sufro violencia de cualquier tipo?
+
+Si una persona sufre violencia, el lugar al que debe acudir depende del tipo de situación, el nivel de riesgo y la edad de la víctima. En general, en la ciudad de La Paz se puede buscar apoyo en servicios de emergencia, plataformas municipales de atención integral, defensorías, hospitales, instancias policiales especializadas y albergues.
+
+### Si hay peligro inmediato o riesgo de agresión en ese momento
+- **Institución:** Policía Boliviana - Emergencias
+- **Dirección:** Atención de emergencia a nivel ciudad; la llamada se realiza por línea telefónica
+- **Número de contacto:** 110
+- **Descripción:** Servicio de emergencia policial para situaciones de peligro inmediato, agresión en curso, amenazas graves o riesgo para la integridad física.
+
+### Si se necesita orientación urgente, contención o derivación en La Paz
+- **Institución:** PAIF Emergencia Línea 156
+- **Dirección:** Calle Chuquisaca, detrás de la Cervecería Nacional
+- **Número de contacto:** 156
+- **Número alternativo:** 60146707
+- **Descripción:** Línea municipal de emergencia y orientación para casos de violencia y vulneración de derechos. Brinda primera atención, escucha, orientación y derivación a servicios legales, psicológicos y sociales.
+
+### Si se sufre violencia física, psicológica, sexual, económica o familiar
+- **Institución:** Servicio Legal Integral Municipal / PAIF
+- **Dirección:** Según macrodistrito o zona de residencia
+- **Número de contacto:** Ver plataformas PAIF de este documento
+- **Descripción:** Instancia municipal que brinda atención legal, psicológica y social para personas afectadas por distintas formas de violencia, incluyendo violencia intrafamiliar, psicológica, física y sexual.
+
+### Si la víctima es niña, niño o adolescente
+- **Institución:** Defensoría de la Niñez y Adolescencia / PAIF
+- **Dirección:** Diferentes puntos de atención en el municipio de La Paz
+- **Número de contacto:** 156
+- **Descripción:** Servicio de protección y restitución de derechos para niñas, niños y adolescentes en situación de violencia, abandono, explotación, vulneración de derechos o riesgo.
+
+### Si se necesita hacer una denuncia especializada por violencia contra la mujer o violencia familiar
+- **Institución:** FELCV La Paz
+- **Dirección:** Av. Sucre entre Catacora y Bolívar s/n
+- **Número de contacto:** 2285495
+- **Descripción:** Fuerza Especial de Lucha Contra la Violencia. Atiende denuncias relacionadas con violencia contra la mujer y violencia en el entorno familiar.
+
+### Si hay lesiones, crisis emocional grave o agresión sexual y se necesita atención médica
+- **Institución:** Hospitales públicos y municipales de La Paz
+- **Dirección:** Ver hospitales de este documento
+- **Número de contacto:** Ver hospitales de este documento
+- **Descripción:** Los hospitales pueden brindar atención médica de emergencia, evaluación clínica, atención de lesiones y apoyo inmediato cuando existe afectación a la salud física o mental.
+
+### Si la persona necesita resguardo temporal o acogida
+- **Institución:** Albergue del Bicentenario Bolivia Solidaria
+- **Dirección:** Zona Mallasa, Calle 7
+- **Número de contacto:** 2319905
+- **Descripción:** Espacio de acogida y resguardo temporal para personas en situación de vulnerabilidad que requieren protección y asistencia social.
+
 ## PAIF / Atención legal, psicológica y social
 
 ### PAIF Emergencia Línea 156
@@ -104,6 +151,20 @@ Este documento reúne instituciones de apoyo en el municipio de La Paz, incluyen
 - **Dirección:** Zona Mallasa, Calle 7
 - **Número de contacto:** 2319905
 - **Descripción:** Espacio de acogida y resguardo temporal para personas en situación de vulnerabilidad que requieren protección y asistencia social.
+
+## Texto orientado a recuperación semántica para RAG
+
+Una persona que sufre violencia física puede acudir a la Policía Boliviana si hay riesgo inmediato, llamar al 110, acudir a la Línea 156 del municipio de La Paz o buscar atención en un hospital público o municipal.
+
+Una persona que sufre violencia psicológica puede acudir a un PAIF o Servicio Legal Integral Municipal para recibir orientación psicológica, apoyo social y acompañamiento legal.
+
+Una persona que sufre violencia sexual puede acudir de inmediato a un hospital para atención médica urgente, luego a la FELCV para formalizar la denuncia y también solicitar apoyo municipal a través de la Línea 156 o de un PAIF.
+
+Una persona que sufre violencia familiar o intrafamiliar puede acudir a un PAIF, al Servicio Legal Integral Municipal, a la Línea 156 o a la FELCV según la gravedad del caso.
+
+Si la víctima es niña, niño o adolescente, corresponde acudir a la Defensoría de la Niñez y Adolescencia o a un PAIF, además de buscar apoyo policial o médico si existe riesgo o lesiones.
+
+Si una persona necesita resguardo temporal por situación de violencia o vulnerabilidad, puede requerir derivación social hacia un albergue o espacio de acogida como el Albergue del Bicentenario Bolivia Solidaria.
 
 ## Nota
 Se recomienda, antes de usar estos contactos en material oficial o difusión pública, realizar una llamada rápida de confirmación, ya que algunas instituciones publican números alternativos o actualizan líneas de atención con el tiempo.
